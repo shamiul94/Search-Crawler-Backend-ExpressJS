@@ -160,12 +160,9 @@ var startScraping = (selectedSeed, startFromIndex) => {
 
 
 exports.scraper = (req, res, next) => {
-    // res.json(JSON.parse([
-    //     [{ a: 1, b: 3 }, { a: 3, c: 6 }],
-    //     [{ a: 2, b: 3 }, { a: 4, c: 6 }]
-    // ]));
-
-    link = "https://pathao.com/?lang=en";
+    // link = "https://pathao.com/?lang=en";
+    console.log('paisi');
+    var link = decodeURIComponent(req.params.url);
     var companyName = extractCompanyNameFromURL(link);
     console.log(link);
 
@@ -181,11 +178,6 @@ exports.scraper = (req, res, next) => {
 
         console.log(combinedArr.length);
 
-        // res.json(JSON.parse([
-        //     [{ a: 1, b: 3 }, { a: 3, c: 6 }],
-        //     [{ a: 2, b: 3 }, { a: 4, c: 6 }]
-        // ]));
-
         res.json(combinedArr);
 
         // fs.writeFile('finalObject.json', JSON.stringify(combinedArr), function(err) {
@@ -198,6 +190,3 @@ exports.scraper = (req, res, next) => {
         })
     });
 }
-
-// scraper("https://pathao.com/?lang=en");
-// scraper("https: //metigy.com/");

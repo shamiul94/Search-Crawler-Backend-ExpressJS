@@ -18,7 +18,12 @@ router.get("/abc", (req, res, next) => {
 });
 
 
-router.get('/crawldata', ScraperController.scraper);
+router.get('/crawldata/:url', ScraperController.scraper);
+
+// router.get('/test/:url', (req, res, next) => {
+//     console.log(req.params);
+//     res.json({ id: req.params });
+// });
 
 
 module.exports = router;
