@@ -74,7 +74,7 @@ var fetchPageObjectFromURL = (link) => {
         request({ uri: link },
             function(error, response, body) {
                 if (error) {
-                    reject(error);
+                    resolve(error); // should be reject but replaced with resolve to avoid 404 errors
                 } else {
                     resolve({
                         "link": link,
@@ -141,24 +141,30 @@ var startScraping = (selectedSeed, startFromIndex) => {
 
                     fetchMultipleLinkData(resultedLinks).then((objectArr) => {
                         // console.log("in 3rd then response ==> arr length is --> ", collectedArticlesArr);
+                        console.log("success in fetchMultipleLinkData", objectArr.length);
 
                         resolve(objectArr);
                     });
                 }).catch(e => {
                     console.log("error in startscraping ==> ", e);
-                    reject(e);
+                    resolve(e); // should be reject but replaced with resolve to avoid 404 errors
                 }).finally(() => {
                     console.log("reached FINALLY of startScraping function");
                 });
         } catch (e) {
             console.log("error in try-catch of startScraping", e);
-            reject(e);
+            resolve(e); // should be reject but replaced with resolve to avoid 404 errors
         }
     });
 }
 
 
-exports.scraper = (link) => {
+exports.scraper = (req, res, next) => {
+    // res.json(JSON.parse([
+    //     [{ a: 1, b: 3 }, { a: 3, c: 6 }],
+    //     [{ a: 2, b: 3 }, { a: 4, c: 6 }]
+    // ]));
+
     link = "https://pathao.com/?lang=en";
     var companyName = extractCompanyNameFromURL(link);
     console.log(link);
@@ -175,12 +181,21 @@ exports.scraper = (link) => {
 
         console.log(combinedArr.length);
 
+        // res.json(JSON.parse([
+        //     [{ a: 1, b: 3 }, { a: 3, c: 6 }],
+        //     [{ a: 2, b: 3 }, { a: 4, c: 6 }]
+        // ]));
+
         res.json(combinedArr);
 
         // fs.writeFile('finalObject.json', JSON.stringify(combinedArr), function(err) {
         //     if (err) throw err;
         //     console.log('object written!');
         // });
+    }).catch(e => {
+        res.json({
+            "message": "There was an error : " + e,
+        })
     });
 }
 
