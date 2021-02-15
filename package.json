@@ -1,0 +1,25 @@
+{
+  "name": "collector_backend_expressjs",
+  "version": "1.0.0",
+  "description": "Collector_Backend_ExpressJS",
+  "main": "final.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/shamiul94/collector_backend_expressjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/shamiul94/collector_backend_expressjs#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "fs": "0.0.1-security",
+    "html-to-text": "^7.0.0",
+    "jsdom": "^16.4.0",
+    "pretty": "^2.0.0",
+    "promise": "^8.1.0",
+    "request": "^2.88.2"
+  }
+}
