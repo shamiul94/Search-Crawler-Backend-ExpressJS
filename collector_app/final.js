@@ -34,12 +34,6 @@ var getJsonText = (htmlObj) => {
         wordwrap: 130
     }).replace(reg, "").replace("\n", "");
 
-
-    // var str = "asdfkadsf[xxxxx]bb";
-
-    // var test = str.replace(reg, "") == "asdfkadsfbb"
-
-
     return {
         link: htmlObj.link,
         text: text

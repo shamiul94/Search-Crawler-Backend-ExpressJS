@@ -1,0 +1,27 @@
+{
+    "name": "collector-app",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js",
+        "debug": "nodemon --inspect ."
+    },
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.5",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "express": "^4.16.4",
+        "express-generator": "^4.16.1",
+        "fs": "0.0.1-security",
+        "html-to-text": "^7.0.0",
+        "http-errors": "~1.6.3",
+        "jade": "~1.11.0",
+        "jsdom": "^16.4.0",
+        "morgan": "~1.9.1",
+        "nodemon": "^2.0.7",
+        "pretty": "^2.0.0",
+        "promise": "^8.1.0",
+        "request": "^2.88.2"
+    }
+}
