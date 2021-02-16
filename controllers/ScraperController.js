@@ -55,7 +55,6 @@ var extractCompanyNameFromURL = (link) => {
     return companyName;
 };
 
-
 var fetchPageFromURL = (link) => {
     return new Promise((resolve, reject) => {
         request({ uri: link },
@@ -69,6 +68,7 @@ var fetchPageFromURL = (link) => {
     });
 }
 
+// this method fetches a single page turned into object from url
 var fetchPageObjectFromURL = (link) => {
     return new Promise((resolve, reject) => {
         request({ uri: link },
@@ -85,6 +85,7 @@ var fetchPageObjectFromURL = (link) => {
     });
 }
 
+// this method fetches all the data from all the links from a list
 
 var fetchMultipleLinkData = (linkList) => {
     return new Promise((resolve, reject) => {
@@ -108,6 +109,7 @@ var fetchMultipleLinkData = (linkList) => {
     });
 }
 
+// this function scrapes a signle page from google search result. it can be 1st, 2nd or any other page based on the startFromIndex value. 
 var startScraping = (selectedSeed, startFromIndex) => {
     return new Promise((resolve, reject) => {
         try {

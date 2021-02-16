@@ -8,6 +8,7 @@
 
 ### How To Run
 * You need to have node installed
+
 1. Clone the repository, install all the packages mentioned in `package.json` and run the server by `npm start`. 
 ```
 git clone git@bitbucket.org:shamiul94/collector_backend_expressjs.git
