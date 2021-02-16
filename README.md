@@ -24,6 +24,10 @@ The `https%3A%2F%2Fpathao.com%2F%3Flang%3Den` is the encoded version of the give
 
 4. As I have not implemented the database part here, you don't need mysql or any other database running. 
 
+5. This is a screenshot of the Postman. 
+
+![postman screenshot](images/postman.png)
+
 ### My Idea
 #### System Flowchart 
 ![Flowchart Image](images/flowchart.png)
