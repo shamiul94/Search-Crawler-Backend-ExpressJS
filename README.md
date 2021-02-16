@@ -26,7 +26,7 @@ The `https%3A%2F%2Fpathao.com%2F%3Flang%3Den` is the encoded version of the give
 
 5. This is a screenshot of the Postman. 
 
-![postman screenshot](images/postman.png)
+![postman screenshot](images/postman.PNG)
 
 ### My Idea
 #### System Flowchart 
