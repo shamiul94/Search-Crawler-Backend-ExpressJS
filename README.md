@@ -26,7 +26,7 @@ The `https%3A%2F%2Fpathao.com%2F%3Flang%3Den` is the encoded version of the give
 
 ### My Idea
 #### System Flowchart 
-![](images\flowchart.png)
+![Flowchart Image](images\flowchart.png)
 
 1. I have parsed the company name from the given URL and searched it on Google through `controllers/scraperController.js`. 
 2. When the response comes back from `Google.com`, this response can be parsed to extract the result links which would give us the most popular, most common publicly available data of that company. 
@@ -46,7 +46,7 @@ The `https%3A%2F%2Fpathao.com%2F%3Flang%3Den` is the encoded version of the give
 ```
 
 ### Database Schema
-![](images\erd.png)
+![Database Schema](images\erd.png)
 1. `SeedLinks` table will contain all the seed links given by the users as input to the API. 
 2. `TraversedLinks` table will contain all the traversed data and their links from the web for all the previous seed links. 
 3. When a user requests with a new seed link, we can just look into the `SeedLinks` table and take the `sid` to search in `TraverseLinks` table to find out all the traversed data from web. 
