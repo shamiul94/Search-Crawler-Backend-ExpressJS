@@ -1,12 +1,13 @@
 # Collector_Backend_ExpressJS
 ### Language & Frameworks
+```
 1. Node JS v14.15.5
 2. Express JS v4.16.1
 3. npm v6.14.11
-
+```
 
 ### How To Run
-* You need to have node. Iused 
+* You need to have node installed
 1. Clone the repository, install all the packages mentioned in `package.json` and run the server by `npm start`. 
 ```
 git clone git@bitbucket.org:shamiul94/collector_backend_expressjs.git
@@ -34,8 +35,15 @@ The `https%3A%2F%2Fpathao.com%2F%3Flang%3Den` is the encoded version of the give
 
 
 ### Possible Further Improvement
+```
 1. As we have publicly available data on the internet in our database, this can be feed to a NLP model and necessary data can be parsed. By using sentiment analysis, we can decide how the public is reacting to their products. 
+
 2. We can extract data or summarize their public appearance by using NMT models too. 
+
+3. As Google blocks searching after a while temporarily, it would be a real challenge to keep it continuous. One solution might be to use `Torr Servie` to change IP address frequently so that Google can't identify us. But it also would be time consuming. Best option would be to buy Google API package. 
+
+4. Scalability and distributed systems are necessary. We could part the database in multiple regions to reduce load on single server. 
+```
 
 ### Database Schema
 ![](images\erd.png)
