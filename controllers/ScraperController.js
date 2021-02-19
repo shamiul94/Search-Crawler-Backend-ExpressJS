@@ -161,34 +161,89 @@ var startScraping = (selectedSeed, startFromIndex) => {
 }
 
 
-exports.scraper = (req, res, next) => {
+exports.scraper = async(req, res, next) => {
     // link = "https://pathao.com/?lang=en";
     console.log('paisi');
     var link = decodeURIComponent(req.params.url);
-    var companyName = extractCompanyNameFromURL(link);
-    console.log(link);
 
-    var promise1 = startScraping(companyName, 0);
-    var promise2 = startScraping(companyName, 10);
+    ///////////////////////////////////
+    const seedLinks = require('../models/SeedLinks');
+    const traversedLinks = require('../models/TraversedLinks');
 
-    Promise.all([promise1, promise2]).then(multiPageObjectArr => {
+    seedLinks.hasMany(traversedLinks, { foreignKey: 'sid' });
+    traversedLinks.belongsTo(seedLinks, { foreignKey: 'sid' });
 
-        var combinedArr = [];
-        for (var arr of multiPageObjectArr) {
-            combinedArr.push(...arr);
+
+    const errHandler = (err) => {
+        console.log(err);
+    }
+
+    const checkRepeatedLink = await seedLinks.findAll({
+        where: {
+            seedLink: link,
         }
-
-        console.log(combinedArr.length);
-
-        res.json(combinedArr);
-
-        // fs.writeFile('finalObject.json', JSON.stringify(combinedArr), function(err) {
-        //     if (err) throw err;
-        //     console.log('object written!');
-        // });
-    }).catch(e => {
-        res.json({
-            "message": "There was an error : " + e,
-        })
     });
+
+    if (checkRepeatedLink.length != 0) {
+
+        // console.log("length 0 pai nai ==> ", checkRepeatedLink);
+        // was searched before 
+        const ans = await seedLinks.findAll({
+            where: {
+                seedLink: link,
+            },
+            include: [{
+                model: traversedLinks,
+                required: true,
+            }],
+        });
+
+        console.log(ans)
+
+        var ret = [];
+        for (var temp of ans[0].TraversedLinks) {
+            ret.push({
+                link: temp.traversedLink,
+                body: temp.content,
+            })
+        }
+        res.json(ret);
+    } else {
+        // was never searched before
+        var companyName = extractCompanyNameFromURL(link);
+        console.log(link);
+
+        var promise1 = startScraping(companyName, 0);
+        var promise2 = startScraping(companyName, 10);
+
+        Promise.all([promise1, promise2]).then(async multiPageObjectArr => {
+
+            var combinedArr = [];
+            for (var arr of multiPageObjectArr) {
+                combinedArr.push(...arr);
+            }
+
+            // insert in DB
+            const insertSeedLink = await seedLinks.create({
+                seedLink: link
+            }).catch(errHandler);
+
+            for (var obj of combinedArr) {
+                const insertTraversedLink = await traversedLinks.create({
+                    sid: insertSeedLink.sid,
+                    traversedLink: obj.link,
+                    content: obj.text,
+                }).catch(errHandler);
+            }
+
+            console.log(combinedArr.length);
+
+            res.json(combinedArr);
+
+        }).catch(e => {
+            res.json({
+                "message": "There was an error : " + e,
+            })
+        });
+    }
 }

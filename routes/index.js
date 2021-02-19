@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const ScraperController = require('../controllers/ScraperController');
+const TestController = require('../controllers/test');
 
 
 /* GET home page. */
@@ -19,6 +20,8 @@ router.get("/abc", (req, res, next) => {
 
 
 router.get('/crawldata/:url', ScraperController.scraper);
+
+router.get('/test', TestController.create);
 
 // router.get('/test/:url', (req, res, next) => {
 //     console.log(req.params);
