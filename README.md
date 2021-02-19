@@ -7,9 +7,11 @@
 4. MySQL
 ```
 
-### How To Run
-* You need to have node installed
+### Prerequisites
+1. Node JS installed
+2. MySQL installed
 
+### How To Run
 1. At first, create a schema named `"collector_db"` in MySQL
 2. Download the repository or clone it by this command - 
 ```
