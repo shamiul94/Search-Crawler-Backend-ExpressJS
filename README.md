@@ -75,7 +75,7 @@ The `https%3A%2F%2Fpathao.com%2F%3Flang%3Den` is the encoded version of the give
 3. When a user requests with a new seed link, we can just look into the `SeedLinks` table and take the `sid` to search in `TraverseLinks` table to find out all the traversed data from web. 
 4. Here is a screenshot of the `TraversedLink` table after calling the api.
 
-![mysql](images/mysql.png)
+![mysql](images/mysql.PNG)
 
 
 ### Challenges
